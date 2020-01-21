@@ -1,17 +1,16 @@
-
 package MatrixsMultiply;
 
 public class MultiplyElement implements Runnable {
     Thread t;
-    int[]A;
-    int[]B;
+    Matrica A;
+    Matrica B;
     int [][] C;
     int n;
     int i;
     int j;
     
     
-    MultiplyElement(int[]A, int[]B, int[][] C, int n, int i, int j){
+    MultiplyElement(Matrica A, Matrica B, int[][] C, int n, int i, int j){
         this.A = A;
         this.B = B;
         this.C = C;
@@ -26,6 +25,8 @@ public class MultiplyElement implements Runnable {
     @Override
     public void run() {
         try {
+            int [] A = this.A.row(i);
+            int [] B = this.B.col(j);
             for(int x=0; x<n; x++){
                 C[i][j] = C[i][j] + A[x]*B[x];
             }
