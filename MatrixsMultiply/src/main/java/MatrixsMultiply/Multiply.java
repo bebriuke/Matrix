@@ -1,26 +1,20 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package MatrixsMultiply;
 
-/**
- *
- * @author gvala
- */
 public class Multiply {
     
     static void Matrics(Matrica A, Matrica B){
         int n = A.length();
         int[][] C = new int [n][n];
+        int[][] D = new int [n][n];
         for(int i = 0; i < n; i++){
             for(int j = 0; j < n; j++){
-                //MultiplyElement t = new MultiplyElement(A.row(i), B.col(j), n, "");
-                C[i][j] = IJElementOf(A.row(i), B.col(j));
+                MultiplyElement t = new MultiplyElement(A.row(i), B.col(j), D, n, i, j); //(2)bandau naudoti thread'us
+              //  C[i][j] = IJElementOf(A.row(i), B.col(j)); //(1)pirmas paprastas bûdas
             }
         }
-        print(C);       
+       // print(C); //(1)
+        System.out.println("");
+        print(D); //(2)
         
     }
     
