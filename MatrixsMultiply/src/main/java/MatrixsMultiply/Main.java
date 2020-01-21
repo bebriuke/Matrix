@@ -19,7 +19,7 @@ public class Main {
         
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter size of square matrices you want to multiply:  ");
-        int n = 3;
+        int n = 300;
         try{
             n = sc.nextInt(); 
         }
