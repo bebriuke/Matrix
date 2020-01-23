@@ -1,21 +1,19 @@
 package MatrixsMultiply;
 
-public class MultiplyElement implements Runnable {
-    Thread t;
-    Matrica A;
-    Matrica B;
-    int [][] C;
-    int n;
-    int i;
-    int j;
+public class MultiplyElement extends Thread {
+    private Thread t;
+    private Matrix A;
+    private Matrix B;
+    private Matrix ABProduct;
+    private int i;
+    private int j;
     
     
-    MultiplyElement(Matrica A, Matrica B, int[][] C, int n, int i, int j){
+    MultiplyElement(Matrix A, Matrix B, Matrix ABProduct, int i, int j){  // skaièiuojamas sandaugos matricos i-osios eilutës j-asis elemetas
         this.A = A;
         this.B = B;
-        this.C = C;
+        this.ABProduct = ABProduct;
         
-        this.n = n;
         this.i = i;
         this.j = j;
         t = new Thread(this);
@@ -25,10 +23,11 @@ public class MultiplyElement implements Runnable {
     @Override
     public void run() {
         try {
-            int [] A = this.A.row(i);
-            int [] B = this.B.col(j);
+            int n = A.getSize();
+            int [] A = this.A.getRow(i);
+            int [] B = this.B.getCol(j);
             for(int x=0; x<n; x++){
-                C[i][j] = C[i][j] + A[x]*B[x];
+                ABProduct.setIJElement(i, j, ABProduct.getIJElement(i, j)+ A[x]*B[x]);
             }
         }catch (Exception e) {
              System.out.println(e);

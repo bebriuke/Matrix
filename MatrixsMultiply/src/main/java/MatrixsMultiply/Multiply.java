@@ -1,42 +1,37 @@
 package MatrixsMultiply;
 
-public class Multiply {
+public class Multiply { 
     
-    static void Matrics(Matrica A, Matrica B){
-        int n = A.length();
-        int[][] C = new int [n][n];
-        int[][] D = new int [n][n];
-        for(int i = 0; i < n; i++){
-            for(int j = 0; j < n; j++){
-                MultiplyElement t = new MultiplyElement(A.row(i), B.col(j), D, n, i, j); //(2)bandau naudoti thread'us
-              //  C[i][j] = IJElementOf(A.row(i), B.col(j)); //(1)pirmas paprastas bûdas
-            }
+    static void matrixs(Matrix firstMultiplier, Matrix secondMultiplier){
+        int size = firstMultiplier.getSize();
+        Matrix productValueByUsingFunction = new Matrix(size);
+        Matrix productValueByUsingThreads = new Matrix(size);
+        for(int i = 0; i < size; i++){
+            for(int j = 0; j < size; j++){
+                //skaièiuoju sandaugos matricos i-osios eilutës j-àjá elemetà 
+                MultiplyElement t = new MultiplyElement(firstMultiplier, 
+                                        secondMultiplier, 
+                                        productValueByUsingThreads, i, j); //(2)bandau naudoti thread'us
+                /*              
+                productValueByUsingFunction.setIJElement(i, j, 
+                                                productIJElement(firstMultiplier.getRow(i), 
+                                                                 secondMultiplier.getCol(j)));
+            */}
         }
-       // print(C); //(1)
-        System.out.println("");
-        print(D); //(2)
+        //productValueByUsingFunction.printMatrix(); //(1)
+        //System.out.println();
+        productValueByUsingThreads.printMatrix(); //(2)
         
     }
     
-    static int IJElementOf(int[] A, int[] B){
-        int n = A.length; //A.length = B.lebgth:  2 square matrices of the same size
+    
+   
+    static int productIJElement(int[] A, int[] B){
+        int n = A.length; //A.length = B.lebgth:  2 square matrices of the same size 
         int rez = 0;
         for(int x=0; x<n; x++){
                 rez = rez + A[x]*B[x];
         }
         return rez;
-    }
-    
-    
-    static void print(int[][]matric){
-        for(int i = 0; i < matric.length; i++){
-            for(int j = 0; j < matric.length; j++){
-                System.out.print(matric[i][j]+ "  ");
-            }  
-            System.out.println("");
-        }
-    }
-
-    
-    
+    }   
 }

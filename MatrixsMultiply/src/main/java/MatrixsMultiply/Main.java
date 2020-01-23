@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package MatrixsMultiply;
 
 import java.util.Scanner;
@@ -19,9 +14,9 @@ public class Main {
         
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter size of square matrices you want to multiply:  ");
-        int n = 300;
+        int size = 5;
         try{
-            n = sc.nextInt(); 
+            size = sc.nextInt(); 
         }
         catch(Exception ex){
             System.out.println(ex);
@@ -30,13 +25,15 @@ public class Main {
         
         
         long startTime = System.currentTimeMillis();
-        Matrica A  = new Matrica(n);
-        Matrica B  = new Matrica(n);
-        A.printMatrica();
+        Matrix firstMultiplier  = new Matrix(size);
+        firstMultiplier.setMatrix();
+        Matrix secondMultiplier  = new Matrix(size);
+        secondMultiplier.setMatrix();
+        firstMultiplier.printMatrix();
         System.out.println("");
-        B.printMatrica();
+        firstMultiplier.printMatrix();
         System.out.println("");
-        Multiply.Matrics(A, B);
+        Multiply.matrixs(firstMultiplier, secondMultiplier);
         long endTime = System.currentTimeMillis();
         System.out.println("That took " + (endTime - startTime) + " milliseconds");    
 
